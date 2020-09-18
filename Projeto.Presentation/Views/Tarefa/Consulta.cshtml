@@ -1,0 +1,66 @@
+﻿@model List<Projeto.Infra.Data.Entities.Tarefa>
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h5>Consulta de Tarefas</h5>
+Listagem de tarefas cadastradas
+<hr />
+
+<div class="row">
+    <div class="col-md-12 text-right">
+        <a href="/Tarefa/Cadastro" class="btn btn-info btn-sm">Cadastrar nova tarefa</a>
+    </div>
+</div>
+<br/>
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Título da Tarefa</th>
+            <th>Status</th>
+            <th width="280">Operações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>
+                    @if (item.Status.ToString().Equals("Aberta"))
+                    {
+                        <span style="font-size: 12pt;" class="badge badge-success">
+                            Aberta
+                        </span>
+                    }
+                    else
+                    {
+                        <span style="font-size: 12pt;" class="badge badge-danger">
+                            Fechada
+                        </span>
+                    }
+                </td>
+                <td>
+                    <a href="/Tarefa/AlterarStatus?id=@item.IdTarefa"
+                       class="btn btn-sm btn-warning">Alterar Status</a>
+                    <a href="/Tarefa/Edicao?id=@item.IdTarefa"
+                       class="btn btn-sm btn-primary">Atualizar</a>
+                    <a href="/Tarefa/Exclusao?id=@item.IdTarefa"
+                       onclick="return confirm('Deseja realmente excluir este registro?');"
+                       class="btn btn-sm btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                Quantidade de compromissos: @Model.Count
+            </td>
+        </tr>
+    </tfoot>
+</table>
+

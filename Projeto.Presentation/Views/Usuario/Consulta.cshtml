@@ -1,0 +1,39 @@
+﻿@model List<Projeto.Infra.Data.Entities.Usuario>
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h5>Consulta de Usuários</h5>
+Listagem de usuários cadastrados
+<hr />
+
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Nome </th>
+            <th>Email</th>
+            <th>Permissão</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Email</td>
+                <td>@item.Permissao</td>
+            </tr>
+        }
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                Quantidade de Usuarios: @Model.Count
+            </td>
+        </tr>
+    </tfoot>
+</table>
